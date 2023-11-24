@@ -2,8 +2,6 @@ import type { Config } from "drizzle-kit";
 import * as dotenv from "dotenv";
 dotenv.config({ path: ".env.local", override: true });
 
-console.log("ooo", process.env.TURSO_AUTH_TOKEN);
-
 export default {
   schema: "./lib/schema.ts",
   out: "./db/migrations",

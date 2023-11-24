@@ -9,7 +9,7 @@
     "lint": "next lint",
     "db:push": "drizzle-kit push:sqlite",
     "db:studio": "drizzle-kit studio --port 3333",
-    "db:gen": "drizzle-kit generate:sqlite --out ./db/migrations --breakpoints --schema=./lib/schema.ts"
+    "db:gen": "drizzle-kit generate:sqlite"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
