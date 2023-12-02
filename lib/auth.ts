@@ -1,8 +1,9 @@
 import { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import { db, tables, ID } from "@/lib/db";
+import { db, tables } from "@/lib/db";
 import { eq } from "drizzle-orm";
+import { oid } from "@/lib/utils";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -45,7 +46,7 @@ export const authOptions: NextAuthOptions = {
 
       if (!user && signInUser && email) {
         user = {
-          id: ID(),
+          id: oid(),
           email,
           name: signInUser.name || "Your name",
         };
@@ -61,7 +62,7 @@ export const authOptions: NextAuthOptions = {
         ...user,
         image: token.picture || signInUser?.image,
       };
-      // console.log("jwt", token);
+
       return token;
     },
   },

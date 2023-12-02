@@ -2,19 +2,14 @@
 
 import * as React from "react"
 import { signIn } from "next-auth/react"
-import * as z from "zod"
-
 import { cn } from "@/lib/utils"
-import { userAuthSchema } from "@/lib/validations/auth"
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-type FormData = z.infer<typeof userAuthSchema>
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-  
+
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
   return (

@@ -7,8 +7,8 @@ export default function DashboardSettingsLoading() {
   return (
     <DashboardShell>
       <DashboardHeader
-        heading="Settings"
-        text="Manage account and website settings."
+        heading="Paramètres"
+        text="Gérer vos paramètres"
       />
       <div className="grid gap-10">
         <CardSkeleton />

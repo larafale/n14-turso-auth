@@ -1,31 +1,28 @@
-import { redirect } from "next/navigation"
-
-import { authOptions } from "@/lib/auth"
-import { getCurrentUser } from "@/lib/session"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
-import { UserNameForm } from "@/components/user-name-form"
+import { UserForm } from "@/components/user-form"
+import { updateUser } from "@/lib/crud"
+import { User } from "@/lib/specs"
 
 export const metadata = {
-  title: "Settings",
-  description: "Manage account and website settings.",
+  title: "Paramètres"
 }
 
 export default async function SettingsPage() {
-  const user = await getCurrentUser()
 
-  if (!user) {
-    redirect(authOptions?.pages?.signIn || "/login")
+  const onUpdate = async (data: User) => {
+    "use server"
+    return updateUser(data)
   }
 
   return (
     <DashboardShell>
       <DashboardHeader
-        heading="Settings"
-        text="Manage account and website settings."
+        heading="Paramètres"
+        text="Gérer vos paramètres"
       />
       <div className="grid gap-10">
-        <UserNameForm user={user} />
+        <UserForm onSubmit={onUpdate} />
       </div>
     </DashboardShell>
   )

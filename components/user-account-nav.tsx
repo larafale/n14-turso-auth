@@ -12,17 +12,20 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { UserAvatar } from "@/components/user-avatar"
+import { useUser } from "@/lib/user"
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, "name" | "image" | "email">
 }
 
-export function UserAccountNav({ user }: UserAccountNavProps) {
+export function UserAccountNav() {
+  const { user } = useUser()
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
-          user={{ name: user.name || null, image: user.image || null }}
+          user={user}
           className="h-8 w-8"
         />
       </DropdownMenuTrigger>
@@ -39,13 +42,10 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/dashboard">Dashboard</Link>
+          <Link className="cursor-pointer" href="/dashboard/billing">Facturation</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/dashboard/billing">Billing</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href="/dashboard/settings">Settings</Link>
+          <Link className="cursor-pointer" href="/dashboard/settings">Paramètres</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
@@ -57,7 +57,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             })
           }}
         >
-          Sign out
+          Déconnexion
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

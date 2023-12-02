@@ -23,13 +23,19 @@ import {
   Twitter,
   User,
   X,
+  Boxes,
+  Cake,
+  CakeSlice,
+  Inbox,
+  ShoppingCart,
+  UserIcon,
   type LucideIcon,
 } from "lucide-react"
 
 export type Icon = LucideIcon
 
 export const Icons = {
-  logo: Command,
+  logo: Cake,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
@@ -69,4 +75,9 @@ export const Icons = {
   ),
   twitter: Twitter,
   check: Check,
+  boxes: Boxes,
+  category: Inbox,
+  product: CakeSlice,
+  order: ShoppingCart,
+  client: UserIcon,
 }

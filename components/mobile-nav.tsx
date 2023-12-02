@@ -27,18 +27,23 @@ export function MobileNav({ items, children }: MobileNavProps) {
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
         <nav className="grid grid-flow-row auto-rows-max text-sm">
-          {items.map((item, index) => (
-            <Link
-              key={index}
-              href={item.disabled ? "#" : item.href}
-              className={cn(
-                "flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline",
-                item.disabled && "cursor-not-allowed opacity-60"
-              )}
-            >
-              {item.title}
-            </Link>
-          ))}
+          {items.map((item, index) => {
+            const Icon = Icons[item.icon || "arrowRight"]
+
+            return (
+              <Link
+                key={index}
+                href={item.disabled ? "#" : item.href}
+                className={cn(
+                  "flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline",
+                  item.disabled && "cursor-not-allowed opacity-60"
+                )}
+              >
+                {item.icon && <Icon className="mr-2 h-4 w-4" />}
+                {item.title}
+              </Link>
+            )
+          })}
         </nav>
         {children}
       </div>
