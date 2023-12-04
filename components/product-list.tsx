@@ -46,7 +46,7 @@ import ProductForm from "@/components/product-form"
 import { Separator } from "@/components/ui/separator"
 import { toast } from 'sonner'
 import { clientError } from "@/lib/utils-client"
-import { cn } from "@/lib/utils"
+import { cn, formatPrice } from "@/lib/utils"
 
 
 
@@ -124,10 +124,7 @@ export const columns: ColumnDef<Product>[] = [
         },
         cell: ({ row }) => {
             const price = parseFloat(row.getValue("price"))
-            const formatted = new Intl.NumberFormat("fr-FR", {
-                style: "currency",
-                currency: "EUR",
-            }).format(price)
+            const formatted = formatPrice(price)
 
             return <div className="text-right font-medium">{formatted}</div>
         },
@@ -207,6 +204,7 @@ export default function ProductsList({ products = [], categories = {}, onSubmit:
             <div className="w-full overflow-x-auto">
                 <div className="flex items-center py-4">
                     <Input
+                        type="search"
                         placeholder="Chercher un produit..."
                         value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
                         onChange={(event) => {

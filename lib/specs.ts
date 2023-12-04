@@ -26,6 +26,11 @@ export const categorySchema = z.object({
   name: z.string().min(2, { message: "2 characters minimum" }),
 });
 
+export const cartItemSchema = productSchema.extend({
+  qty: z.coerce.number().multipleOf(1).min(1).max(20).default(1)
+})
+
 export type User = z.infer<typeof userSchema>;
 export type Category = z.infer<typeof categorySchema>;
 export type Product = z.infer<typeof productSchema>;
+export type CartItem = z.infer<typeof cartItemSchema>;

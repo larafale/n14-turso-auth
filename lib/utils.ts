@@ -21,3 +21,10 @@ export const serverError = (err: any) => {
 };
 
 export const oid = () => ObjectID().toHexString();
+
+export const formatPrice = (value: any) =>
+  new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+  }).format(value)
+  //.replace(/(\.|,)00/g, '');

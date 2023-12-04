@@ -88,12 +88,12 @@ export const columns: ColumnDef<Category>[] = [
     },
 ]
 
-type CategoryProps = {
+type Props = {
     categories: Category[],
     onSubmit: any
 }
 
-export default function CategoryList({ categories = [], onSubmit: onUpdate }: CategoryProps) {
+export default function CategoryList({ categories = [], onSubmit: onUpdate }: Props) {
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
@@ -158,6 +158,7 @@ export default function CategoryList({ categories = [], onSubmit: onUpdate }: Ca
             <div className="w-full overflow-x-auto">
                 <div className="flex items-center py-4">
                     <Input
+                        type="search"
                         placeholder="Chercher une catégorie..."
                         value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
                         onChange={(event) => {
